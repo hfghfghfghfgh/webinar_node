@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg">
+ <div class="container">
+
+    <!-- Brand -->
+    <a class="navbar-brand" href="<%= site_url %>">
+      <img src="/public/assets/img/brand.svg" class="navbar-brand-img" alt="...">
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapse -->
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <%if( typeof admin != 'undefined') { %>
+            <a role="button" id="end_session" class=" btn btn-danger navbar-brand mt-2 ml-14 " style="color: white" >
+                End Session
+            </a>
+
+            <a class="navbar-brand font-size-sm ml-3 mt-1" >
+                <span style="color: #1c4ce8">Session time</span><br>
+                <span id="start_time"></span>
+            </a>
+
+            <div class="dropdown navbar-brand mt-2 ml-4">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="settings_dropdown" ><i class="fas fa-cog"></i></button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="height:auto;width: 50px">
+                   <div class="custom-control custom-switch" style="margin:5px" id="camera_on_off">
+                       <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+                       <label class="custom-control-label" for="customSwitch1">   <i  style="color: red" class=" ml-2 fas fa-2x fa-video"></i></label>
+                   </div>
+                    <div class="custom-control custom-switch mt-4" id="microphone_on_off" style="margin:5px">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch2" checked>
+                        <label class="custom-control-label" for="customSwitch2">  <i   style="color: red"  class="ml-2 fas fa-2x fa-microphone-alt"></i></label>
+                    </div>
+                </div>
+            </div>
+
+        <% } %>
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fe fe-x"></i>
+      </button>
+    </div>
+ </div>
+</nav>

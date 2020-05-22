@@ -1,0 +1,14 @@
+{
+  "production": {
+    "app": {
+      "url": "http://3.17.193.214",
+      "port": 8080,
+      "laravel_url": "http://3.17.193.214:8000"
+    }
+  },
+  "global": {
+    "app": {
+      "name": "Live Video Call"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); -%>
+</head>
+<body >
+<%- include('../partials/navbar'); -%>
+<div class="container-fluid" id="login">
+    <section class="section-border border-primary">
+        <div class="container d-flex flex-column">
+            <div class="row align-items-center justify-content-center no-gutters min-vh-100">
+                <div class="col-12 col-md-5 col-lg-6 py-8 py-md-11">
+
+
+                    <!-- Heading -->
+                    <h1 class="mb-0 font-weight-bold text-center">
+                        Sign in to Event
+                    </h1>
+
+
+                    <!-- Form -->
+                    <form method="POST" class="mb-6" action="/join/event/<%= event_id -%>">
+                        <!-- Text -->
+                        <% if(wrong_password) { %>
+                            <span class="invalid-feedback" style="display: block" role="alert">
+                                <strong class="text-center"> <h3>Wrong password</h3></strong>
+                            </span>
+                        <% } %>
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="email">
+                                First Name
+                            </label>
+                            <input type="text" value="<%- (old_values.first_name) ? old_values.first_name : ''-%>"  name="first_name" class="form-control <%- (errors.find(o => o.param == "first_name"))? 'is-invalid' : ''-%>" id="first_name"  required  autofocus placeholder="Name">
+                            <%if(errors.find(o => o.param == "first_name"))  {%>
+                                <span class="invalid-feedback" style="display: block" role="alert">
+                                            <strong>First Name is required and minimum length is 4 </strong>
+                                </span>
+                            <%}%>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                Last Name
+                            </label>
+                            <input type="text" value="<%- (old_values.last_name) ? old_values.last_name : ''-%>"   name="last_name" class="form-control <%- (errors.find(o => o.param == "last_name"))? 'is-invalid' : ''-%>" id="last_name"  required  autofocus placeholder="Last Name">
+                            <%if(errors.find(o => o.param == "last_name"))  {%>
+                                <span class="invalid-feedback" style="display: block" role="alert">
+                                            <strong>Last Name is required and minimum length is 4 </strong>
+                                </span>
+                            <%}%>
+                        </div>
+                        <!-- Password -->
+                        <% if(password) {%>
+                        <div class="form-group mb-5">
+                            <label for="password">
+                                Password
+                            </label>
+                            <input type="password" name="password" class="form-control <%- (wrong_password)? 'is-invalid' : ''-%>" id="password" placeholder="Enter your password">
+                        </div>
+                        <%}%>
+                        <!-- Submit -->
+                        <button class="btn btn-block btn-primary" type="submit">
+                            Join to Event
+                        </button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

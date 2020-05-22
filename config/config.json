@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "web-courses",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false,
+    "logging": false
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "operatorsAliases": false,
+    "logging": false
+  },
+  "production": {
+    "username": "admin",
+    "password": "adminweb_courses",
+    "database": "webcourses",
+    "host": "webcourses1.clxtunclg1r3.us-east-2.rds.amazonaws.com",
+    "dialect": "mysql",
+    "operatorsAliases": false,
+    "logging": false
+  }
+}

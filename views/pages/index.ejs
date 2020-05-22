@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); -%>
+</head>
+<body style="background-color: #E0FEFE;">
+<%- include('../partials/navbar'); -%>
+
+<div class="container-fluid" id="conference">
+    <div class="row" >
+        <div class="col-8" id="video">
+                <% if(!admin) {%>
+                    <video id="admin_video" style="display: none; width: 100%;height: 600px" autoplay></video>
+                    <svg  id="user_video_loader" style="width: 100%;height: 500px;margin-top: 10px;"  x="0px" y="0px"
+                     viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                          <circle fill="none" stroke="blue" stroke-width="4" stroke-miterlimit="10" cx="50" cy="50" r="48"/>
+                            <line fill="none" stroke-linecap="round" stroke="blue" stroke-width="4" stroke-miterlimit="10" x1="50" y1="50" x2="85" y2="50.5">
+                                <animateTransform
+                                        attributeName="transform"
+                                        dur="2s"
+                                        type="rotate"
+                                        from="0 50 50"
+                                        to="360 50 50"
+                                        repeatCount="indefinite" />
+                            </line>
+                        <line fill="none" stroke-linecap="round" stroke="blue" stroke-width="4" stroke-miterlimit="10" x1="50" y1="50" x2="49.5" y2="74">
+                            <animateTransform
+                                    attributeName="transform"
+                                    dur="15s"
+                                    type="rotate"
+                                    from="0 50 50"
+                                    to="360 50 50"
+                                    repeatCount="indefinite" />
+                        </line>
+                </svg>
+                <% }%>
+
+                <% if(admin) {%>
+
+                        <video id="local-video" style="width: 100%;min-height: 500px;margin: 10px"  ></video>
+                       <div class="d-flex justify-content-around mt-10">
+                           <img class="admin_video_loader" src="/public/assets/img/man.svg" style="width: 40%;height: 400px;display: none">
+                           <img class="admin_video_loader" src="/public/assets/img/question.svg" style="margin-top:100px;width: 20%;height: 200px;display: none">
+                           <img class="admin_video_loader" src="/public/assets/img/woman.svg" style="width: 40%;height: 400px;display: none">
+                       </div>
+                 <% }%>
+
+                <table class="table table-striped table-hover" id="active_users_list" style="bottom:0;width: 250px;z-index:1000;display: none;position: absolute;">
+                    <thead style="display: block;width: 250px;height: 30px;  border-top: 3px solid #007bff;border-radius: 15px;">
+
+                    </thead>
+                    <tbody style="border-bottom: 3px solid #007bff;border-radius: 15px;height: 200px;overflow-y: scroll;display: block;width: 250px;" id="active_users_body">
+
+                    </tbody>
+                </table>
+
+        </div>
+        <div class="col-4" id="chat">
+            <div class="chat">
+                <div class="card">
+                    <div class="card-header msg_head">
+                        <div class="d-flex bd-highlight">
+                            <div class="user_info">
+                                <span> Group Chat</span>
+                            </div>
+                        </div>
+                        <span class="action_menu_btn"><i style="color: black" class="fas fa-ellipsis-v"></i></span>
+                        <div class="action_menu">
+                            <ul>
+                                <% if(admin) { %>
+                                <li  style="display: none"  id="chat_private"><i class="fas fa-user-circle" ></i> Private</li>
+                                <li  style="display: none" id="chat_public"><i class="fas fa-users"></i> Public</li>
+                                <% }%>
+                                <li id="close_chat"><i class="fas fa-plus"></i>Hide</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body msg_card_body" style="height: 430px">
+
+                    </div>
+                    <div class="card-footer ">
+                        <div class="input-group">
+                            <div class="input-group-append">
+                                <span class="input-group-text attach_btn"></span>
+                            </div>
+                            <textarea name="" class="form-control type_msg" placeholder="Type your message..."></textarea>
+
+                            <div class="input-group-append">
+                                <span class="input-group-text send_btn"><i id="send" style="color: black" class="fas fa-location-arrow"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1" id="hidden_chat_button" style="display: none">
+
+           <div>
+               <span><b>Chat</b></span>
+               <span class="action_menu_btn"><i style="color: black" class="far fa-3x fa-comments"></i></span>
+           </div>
+            <div class="action_menu mt-7" style="display: none">
+                <ul>
+                    <li id="close_chat_hidden"><i class="fas fa-plus"></i>Show</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="mb-5 mt-5">
+
+            <button type="button" class="btn btn-info show_active_users dropdown-toggle"  >Show Active Users <i class=" ml-2 fas fa-caret-up"></i></button>
+            <% if(admin) {%>
+                <button type="button" class="btn btn-success" id="share_screen">Start Screen Share</button>
+                <button type="button" class="btn btn-danger" style="display:none;" id="stop_screen_share"> Stop Screen Share</button>
+            <% }%>
+    </div>
+
+</div>
+<div style="display: none">
+    <input id="event_id" value="<%= event_id -%>">
+    <input id="active_id" value="<%= active_id -%>">
+    <input id="admin" value="<%= admin -%>">
+    <input id="is_public" value="<%= is_public -%>">
+    <input id="start_time_variable" value="<%= start_time -%>">
+    <input id="laravel_url" value="<%= laravel_url -%>">
+</div>
+
+
+
+
+
+<div class="modal fade bd-example-modal-lg"   id="first_settings_modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+         <div class="modal-body d-flex justify-content-center ml-5 mr-5">
+                                        <h2 class="text-align-center"><span class="ml-5" style="color:red">An important Message!</span></h2>
+                    </div>
+          <div class="modal-body d-flex justify-content-between ml-5 mr-5">
+                    <h5>If you refresh the page or close the browser window, your conference will be closed automatically for all participants until you start the conference again and inform all participants to enter this conference again.</h5>
+           </div>
+
+           <div class="modal-body d-flex justify-content-center ml-5 mr-5 mb-0 color-info">
+                               <h5>Configure your microphone and camera!</h5>
+                      </div>
+            <div class="modal-body d-flex justify-content-center">
+
+                <div>
+                    <div class="custom-control custom-switch mt-3" style="margin:5px" id="camera_on_off_modal">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch3" checked>
+                        <label class="custom-control-label" for="customSwitch3">   <i  style="color: red" class=" ml-2 fas fa-2x fa-video"></i></label>
+                    </div>
+                    <div class="custom-control custom-switch mt-7 mb-3" id="microphone_on_off_modal" style="margin:5px">
+                        <input type="checkbox" class="custom-control-input" id="customSwitch4" checked>
+                        <label class="custom-control-label" for="customSwitch4">  <i   style="color: red"  class="ml-2 fas fa-2x fa-microphone-alt"></i></label>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="settings_modal_save" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>

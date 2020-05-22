@@ -1,0 +1,14 @@
+{
+  "development": {
+    "app": {
+      "url": "http://localhost",
+      "port": 3000,
+      "laravel_url": "http://localhost:8000"
+    }
+  },
+  "global": {
+    "app": {
+      "name": "Live Video Call"
+    }
+  }
+}

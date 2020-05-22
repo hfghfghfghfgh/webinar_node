@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <%- include('../partials/head'); -%>
+</head>
+<body >
+<%- include('../partials/navbar'); -%>
+<div class="container-fluid" id="not_started">
+    <section class="section-border border-primary">
+        <div class="container d-flex flex-column">
+            <div class="  justify-content-center no-gutters mt-12">
+                <!-- Heading -->
+                <h1 id="title" style="display:none" class="mb-3 font-weight-bold text-center">
+                    The event is not started
+                </h1>
+                <h3  id="info" style="display:none" class="mb-3 text-center">
+                  Event started at <span style="color:red"><%= event.start_date %> <%= event.start_time %></span>
+                </h3>
+                <h5 id ="sub_info"  style="display:none" class="mb-3  text-center">
+                  <span id="left_until_days"></span>
+                </h5>
+                 <p class="text-center">
+                    <a class="navbar-brand" href="<%= site_url %>">
+                        Go to back
+                    </a>
+                </p>
+
+            </div>
+        </div>
+    </section>
+</div>
+ <script  type="text/javascript">
+     const not_started_event_date = "<%= event.start_date %>";
+     const not_started_event_time = "<%= event.start_time %>";
+ </script>
+</body>
+</html>
