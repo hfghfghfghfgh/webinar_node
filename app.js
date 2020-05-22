@@ -2,7 +2,8 @@
 const express = require('express');
 const app = express();
 const http = require('http');
-const server = http.Server(app);
+app.set('port',3000);
+const server = http.createServer(app);
 const start_config = app.get('env');
 const cors = require('cors');
 
@@ -225,5 +226,5 @@ app.get('/remove/sessions',(req,res) => {
 });
 
 //start server and listen to port
-server.listen(port, () => console.log(`${config.get('global.app.name')} listening at ${config.get(`${start_config}.app.url`)}:${port}`));
+server.listen(3000, () => console.log(`${config.get('global.app.name')} listening at ${config.get(`${start_config}.app.url`)}:${port}`));
 
